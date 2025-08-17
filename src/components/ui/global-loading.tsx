@@ -18,7 +18,7 @@ export default function GlobalLoading({ message = 'Loading...' }: GlobalLoadingP
         </div>
         
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-foreground">AMPP</h2>
+          <h2 className="text-xl font-semibold text-foreground">Ryso</h2>
           <p className="text-muted-foreground">{message}</p>
         </div>
         

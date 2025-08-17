@@ -6,7 +6,7 @@ import { generateDemoTransactions, generateDemoGoals } from '@/services/demoData
 import { User } from '@/types';
 import { APP_CONFIG } from '@/constants/app';
 
-const SEED_VERSION_KEY = 'ampp_seed_version';
+const SEED_VERSION_KEY = 'ryso_seed_version';
 const CURRENT_SEED_VERSION = '1.0.0';
 
 export class SeedOrchestrator {

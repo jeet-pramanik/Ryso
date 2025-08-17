@@ -8,7 +8,7 @@ import {
   AppSettings 
 } from '@/types';
 
-export class AMPPDatabase extends Dexie {
+export class RysoDatabase extends Dexie {
   users!: Table<User>;
   transactions!: Table<Transaction>;
   budgets!: Table<Budget>;
@@ -17,7 +17,7 @@ export class AMPPDatabase extends Dexie {
   settings!: Table<AppSettings>;
 
   constructor() {
-    super('AMPP_Database');
+    super('Ryso_Database');
     
     this.version(1).stores({
       users: '++id, email, phone',
@@ -30,4 +30,4 @@ export class AMPPDatabase extends Dexie {
   }
 }
 
-export const db = new AMPPDatabase();
+export const db = new RysoDatabase();

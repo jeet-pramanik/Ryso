@@ -138,7 +138,7 @@ export default function Dashboard({
   if (!currentBudget && !showBudgetSetup) {
     return (
       <div className="min-h-screen bg-background">
-        <AppHeader title="AMPP" />
+        <AppHeader title="Ryso" />
         
         <div className="flex items-center justify-center min-h-[calc(100vh-120px)] px-4">
           <motion.div
@@ -148,17 +148,17 @@ export default function Dashboard({
           >
             <Card>
               <CardContent className="p-8">
-                <div className="text-6xl mb-6">💰</div>
-                <h2 className="text-2xl font-bold mb-4">Welcome to AMPP!</h2>
+                <div className="text-6xl mb-6">🧠�</div>
+                <h2 className="text-2xl font-bold mb-4">Welcome to Ryso!</h2>
                 <p className="text-muted-foreground mb-8">
-                  Let's set up your first budget to start tracking your expenses and achieving your financial goals.
+                  Your smart money companion is here! Let's set up your budget so I can help make every rupee count toward your goals.
                 </p>
                 <Button 
                   onClick={() => setShowBudgetSetup(true)}
                   className="w-full"
                   size="lg"
                 >
-                  Set Up Budget
+                  Let's Get Started
                 </Button>
               </CardContent>
             </Card>
@@ -184,7 +184,7 @@ export default function Dashboard({
 
   return (
     <div className="min-h-screen bg-background">
-      <AppHeader title="AMPP" />
+      <AppHeader title="Ryso" />
       
       <motion.main
         variants={containerVariants}

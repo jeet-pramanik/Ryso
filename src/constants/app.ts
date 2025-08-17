@@ -1,7 +1,8 @@
 export const APP_CONFIG = {
-  NAME: 'AMPP',
+  NAME: 'Ryso',
   VERSION: '1.0.0',
-  DESCRIPTION: 'Smart financial management for students',
+  DESCRIPTION: 'Smart money companion that transforms financial stress into financial confidence',
+  TAGLINE: 'Making every rupee count',
   DEMO_USER_ID: 'demo-user-1'
 } as const;
 

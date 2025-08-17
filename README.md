@@ -1,73 +1,153 @@
-# Welcome to your Lovable project
+# Ryso - Smart Money Companion for Students
 
-## Project info
+<div align="center">
 
-**URL**: https://lovable.dev/projects/797d1db8-abb9-4b78-92be-f53fe37c29e0
+[![IIT Guwahati](https://img.shields.io/badge/Backed%20by-IIT%20Guwahati-orange?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuNDUgOC4zNkwyMCA5TDEzLjQ1IDE1LjY0TDEyIDIyTDEwLjU1IDE1LjY0TDQgOUwxMC41NSA4LjM2TDEyIDJaIiBmaWxsPSIjRkY2NTAwIi8+Cjwvc3ZnPgo=)](https://unstop.com/competitions/produscope-the-product-case-study-competition-iit-guwahati-1529278)
+[![Competition](https://img.shields.io/badge/Produscope-Competition%20Entry-blue?style=for-the-badge)](https://unstop.com/competitions/produscope-the-product-case-study-competition-iit-guwahati-1529278)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-## How can I edit this code?
+</div>
 
-There are several ways of editing your application.
+Ryso is a student-first fintech platform that transforms financial stress into financial confidence. Designed specifically for the unique financial realities of student life, Ryso makes every rupee count through intelligent automation and social features.
 
-**Use Lovable**
+## 🧠 About Ryso
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/797d1db8-abb9-4b78-92be-f53fe37c29e0) and start prompting.
+**Mission**: To empower students with financial tools that are as smart, social, and intuitive as they are, turning money management from a burden into a superpower.
 
-Changes made via Lovable will be committed automatically to this repo.
+**Vision**: A world where every student has the financial confidence to pursue their dreams without money anxiety holding them back.
 
-**Use your preferred IDE**
+### Core Values
+- **Student-Centric**: Everything designed specifically for student financial realities
+- **Transparency**: No hidden fees, clear explanations, honest guidance  
+- **Innovation**: Using technology to solve real student financial problems
+- **Community**: Building connections that strengthen financial wellbeing
+- **Empowerment**: Tools that educate and build long-term financial skills
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ✨ Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Smart Budget Tracking**: Intelligent categorization that understands student spending patterns
+- **UPI Payments**: Seamless money transfers with automatic expense tracking
+- **Micro-savings Goals**: Save for what matters - from emergency funds to dream gadgets
+- **Expense Intelligence**: Auto-categorization that learns from your habits
+- **Social Features**: Split bills, track group expenses, learn from peers
+- **Achievement System**: Celebrate every financial milestone, no matter how small
 
-Follow these steps:
+## 🛠 Technologies
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+This project is built with modern web technologies:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **UI Framework**: Tailwind CSS with shadcn/ui components
+- **State Management**: Zustand for lightweight, scalable state management
+- **Database**: Dexie.js (IndexedDB) for offline-first data persistence
+- **Animations**: Framer Motion for smooth, engaging interactions
+- **Icons**: Lucide React for consistent iconography
+- **Forms**: React Hook Form with Zod validation
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🚀 Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Prerequisites
+- Node.js 18+ and npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/jeet-pramanik/pay-path-goal.git
+
+# Navigate to project directory  
+cd pay-path-goal
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Available Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production  
+npm run preview      # Preview production build
+npm run test         # Run tests
+npm run lint         # Run ESLint
+```
 
-**Use GitHub Codespaces**
+## 🎯 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── components/          # Reusable UI components
+│   ├── features/       # Feature-specific components
+│   ├── layout/         # Layout components  
+│   └── ui/            # Base UI components (shadcn/ui)
+├── constants/          # App configuration and constants
+├── data/              # Sample data and seeding logic
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+├── pages/             # Page components  
+├── services/          # Business logic and data services
+├── stores/            # Zustand state management
+├── types/             # TypeScript type definitions
+└── test/              # Test files and setup
+```
 
-## What technologies are used for this project?
+## 🏆 Competition Recognition
 
-This project is built with:
+<div align="center">
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### **🎓 Backed by IIT Guwahati's Produscope Competition**
 
-## How can I deploy this project?
+<table border="0">
+<tr>
+<td align="center">
+<img src="https://github.com/jeet-pramanik/pay-path-goal/blob/main/assets/iit-guwahati-logo.png?raw=true" alt="IIT Guwahati" width="100" height="100">
+</td>
+<td align="center">
+<h3>Indian Institute of Technology Guwahati</h3>
+<p><strong>Produscope - Product Case Study Competition</strong></p>
+</td>
+</tr>
+</table>
 
-Simply open [Lovable](https://lovable.dev/projects/797d1db8-abb9-4b78-92be-f53fe37c29e0) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+**Ryso** is proudly developed as part of **Produscope - The Product Case Study Competition** organized by the prestigious **Indian Institute of Technology (IIT) Guwahati**. This competition challenges innovative minds to create real-world solutions that address pressing societal needs.
 
-Yes, you can!
+<div align="center">
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+| 🎯 **Focus** | 🏛️ **Institution** | 🌟 **Theme** | 🚀 **Track** |
+|:-------------|:------------------|:-------------|:-------------|
+| Product Development & Case Study | IIT Guwahati | Student Empowerment | Fintech & Welfare |
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+</div>
+
+> *"Transforming ideas into impactful products that make a difference in students' lives"*
+
+<div align="center">
+
+[![Learn More](https://img.shields.io/badge/Learn%20More%20About-Produscope%20Competition-orange?style=for-the-badge&logo=external-link)](https://unstop.com/competitions/produscope-the-product-case-study-competition-iit-guwahati-1529278)
+
+</div>
+
+---
+
+</div>
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our contribution guidelines for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+**Made with 💙 for students, by students**  
+**🎓 Proudly backed by IIT Guwahati's innovation ecosystem**

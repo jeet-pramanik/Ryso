@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AMPP FinTech Design System - Razorpay Inspired
-All colors MUST be HSL.
+/* Ryso Design System - Student-First Fintech
+Modern, approachable design that reduces financial anxiety.
+All colors MUST be HSL for consistency and theming.
 */
 
 @layer base {

@@ -1,4 +1,4 @@
-import { Bell, Settings, Target } from 'lucide-react';
+import { Bell, Settings, Brain } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -30,16 +30,16 @@ export default function AppHeader({
         <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 shadow-sm backdrop-blur-sm">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
-              {/* App Icon */}
+              {/* App Icon - Brain symbolizes intelligence and mentorship */}
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md">
-                <Target className="h-5 w-5 text-white" />
+                <Brain className="h-5 w-5 text-white" />
               </div>
               
               <div>
                 <h1 className="text-lg font-bold text-foreground">{title}</h1>
                 {user && (
                   <p className="text-xs text-muted-foreground">
-                    Welcome back, {user.name.split(' ')[0]}! 👋
+                    Hey {user.name.split(' ')[0]}! Let's make money simple �
                   </p>
                 )}
               </div>

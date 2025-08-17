@@ -1,4 +1,5 @@
-// AMPP FinTech App Types
+// Ryso - Smart Money Companion Types
+// Student-first fintech platform that transforms financial stress into confidence
 
 export enum ExpenseCategory {
   FOOD = 'FOOD',

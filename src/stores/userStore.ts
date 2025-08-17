@@ -79,7 +79,7 @@ export const useUserStore = create<UserState>()(
       }
     }),
     {
-      name: 'ampp-user-storage',
+      name: 'ryso-user-storage',
       partialize: (state) => ({ user: state.user })
     }
   )

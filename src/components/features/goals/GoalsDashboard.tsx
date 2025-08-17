@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,10 +9,10 @@ import { GoalCategory, GoalStatus, SavingsGoal } from '@/types';
 import { useGoalsStore } from '@/stores/goalsStore';
 import { useUserStore } from '@/stores/userStore';
 import { cn } from '@/lib/utils';
-import AddGoalModal from './AddGoalModal';
-import AddContributionModal from './AddContributionModal';
+import AddContributionSheet from './AddContributionSheet';
 
 const GoalsDashboard: React.FC = () => {
+  const navigate = useNavigate();
   const { user } = useUserStore();
   const {
     goals,
@@ -24,7 +25,6 @@ const GoalsDashboard: React.FC = () => {
   } = useGoalsStore();
 
   const [selectedCategory, setSelectedCategory] = useState<GoalCategory | 'all'>('all');
-  const [showAddGoalModal, setShowAddGoalModal] = useState(false);
   const [showContributionModal, setShowContributionModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<SavingsGoal | null>(null);
 
@@ -104,7 +104,7 @@ const GoalsDashboard: React.FC = () => {
             <Button 
               size="sm"
               className="bg-primary hover:bg-primary/90"
-              onClick={() => setShowAddGoalModal(true)}
+              onClick={() => navigate('/add-goal')}
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Goal
@@ -168,7 +168,7 @@ const GoalsDashboard: React.FC = () => {
       </div>
 
       {/* Goals List */}
-      <div className="p-4 space-y-4 pb-20">
+      <div className="p-4 space-y-4">
         {filteredGoals.length === 0 ? (
           <div className="text-center py-12">
             <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
@@ -178,7 +178,7 @@ const GoalsDashboard: React.FC = () => {
             <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
               Start your savings journey by creating your first goal. Every small step counts!
             </p>
-            <Button className="bg-primary hover:bg-primary/90" onClick={() => setShowAddGoalModal(true)}>
+            <Button className="bg-primary hover:bg-primary/90" onClick={() => navigate('/add-goal')}>
               <Plus className="w-4 h-4 mr-2" />
               Create Your First Goal
             </Button>
@@ -261,14 +261,8 @@ const GoalsDashboard: React.FC = () => {
         )}
       </div>
 
-      {/* Add Goal Modal */}
-      <AddGoalModal 
-        open={showAddGoalModal} 
-        onOpenChange={setShowAddGoalModal} 
-      />
-
-      {/* Add Contribution Modal */}
-      <AddContributionModal
+      {/* Add Contribution Sheet */}
+      <AddContributionSheet
         open={showContributionModal}
         onOpenChange={setShowContributionModal}
         goal={selectedGoal}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import BottomNavigation from '@/components/layout/BottomNavigation';
 import Dashboard from '@/components/features/dashboard/Dashboard';
@@ -9,12 +10,58 @@ import ProfilePage from '@/components/features/profile/ProfilePage';
 import AddExpenseModal from '@/components/modals/AddExpenseModal';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [showSendMoney, setShowSendMoney] = useState(false);
   const [showCreateGoal, setShowCreateGoal] = useState(false);
 
+  // Map URL paths to tab names
+  const getTabFromPath = (pathname: string) => {
+    switch (pathname) {
+      case '/':
+        return 'home';
+      case '/expenses':
+        return 'expenses';
+      case '/pay':
+        return 'pay';
+      case '/goals':
+        return 'goals';
+      case '/profile':
+        return 'profile';
+      default:
+        return 'home';
+    }
+  };
+
+  // Map tab names to URL paths
+  const getPathFromTab = (tab: string) => {
+    switch (tab) {
+      case 'home':
+        return '/';
+      case 'expenses':
+        return '/expenses';
+      case 'pay':
+        return '/pay';
+      case 'goals':
+        return '/goals';
+      case 'profile':
+        return '/profile';
+      default:
+        return '/';
+    }
+  };
+
+  const [activeTab, setActiveTab] = useState(getTabFromPath(location.pathname));
+
+  // Sync activeTab with URL changes
+  useEffect(() => {
+    setActiveTab(getTabFromPath(location.pathname));
+  }, [location.pathname]);
+
   const handleNavigate = (tab: string) => {
+    const path = getPathFromTab(tab);
+    navigate(path);
     setActiveTab(tab);
   };
 

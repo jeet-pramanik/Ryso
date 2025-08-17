@@ -10,6 +10,7 @@ import { GoalCategory, GoalStatus, SavingsGoal } from '@/types';
 import { useGoalsStore } from '@/stores/goalsStore';
 import { useUserStore } from '@/stores/userStore';
 import { cn } from '@/lib/utils';
+import AppHeader from '@/components/layout/AppHeader';
 import AddContributionSheet from './AddContributionSheet';
 import SavingsInsights from './SavingsInsights';
 import AchievementsDisplay from './AchievementsDisplay';
@@ -101,54 +102,51 @@ const GoalsDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <div className="bg-white border-b">
-        <div className="p-4 space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Savings Goals</h1>
-              <p className="text-sm text-muted-foreground">Track and achieve your financial dreams</p>
-            </div>
-            <Button 
-              size="sm"
-              className="bg-primary hover:bg-primary/90"
-              onClick={() => navigate('/add-goal')}
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Goal
-            </Button>
-          </div>
+      {/* Header */}
+      <AppHeader 
+        title="Goals" 
+        rightAction={
+          <Button 
+            size="sm"
+            className="bg-primary hover:bg-primary/90"
+            onClick={() => navigate('/add-goal')}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Goal
+          </Button>
+        }
+      />
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-3">
-            <Card className="border-0 bg-gradient-to-r from-blue-50 to-blue-100">
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-blue-500 rounded-lg">
-                    <DollarSign className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-blue-600 font-medium">Total Savings</p>
-                    <p className="text-lg font-bold text-blue-900">{formatCurrency(totalSavings)}</p>
-                  </div>
+      {/* Stats Cards */}
+      <div className="p-4 bg-white border-b">
+        <div className="grid grid-cols-2 gap-3">
+          <Card className="border-0 bg-gradient-to-r from-blue-50 to-blue-100">
+            <CardContent className="p-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-blue-500 rounded-lg">
+                  <DollarSign className="w-4 h-4 text-white" />
                 </div>
-              </CardContent>
-            </Card>
+                <div>
+                  <p className="text-xs text-blue-600 font-medium">Total Savings</p>
+                  <p className="text-lg font-bold text-blue-900">{formatCurrency(totalSavings)}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-            <Card className="border-0 bg-gradient-to-r from-green-50 to-green-100">
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-green-500 rounded-lg">
-                    <Award className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-green-600 font-medium">Completed</p>
-                    <p className="text-lg font-bold text-green-900">{completedGoals.length} Goals</p>
-                  </div>
+          <Card className="border-0 bg-gradient-to-r from-green-50 to-green-100">
+            <CardContent className="p-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-green-500 rounded-lg">
+                  <Award className="w-4 h-4 text-white" />
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <div>
+                  <p className="text-xs text-green-600 font-medium">Completed</p>
+                  <p className="text-lg font-bold text-green-900">{completedGoals.length} Goals</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 

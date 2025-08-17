@@ -124,19 +124,42 @@ export function PaymentDashboard() {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4"> {/* Reduced space-y-6 to space-y-4 for mobile */}
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-bold">Payments</h1> {/* Reduced from text-2xl */}
-          <p className="text-sm text-muted-foreground"> {/* Reduced from base size */}
-            Send money, scan QR codes, and manage payment history
-          </p>
-        </div>
-        <Button onClick={() => setShowPaymentFlow(true)} className="flex items-center gap-2" size="sm"> {/* Added size="sm" */}
-          <Send className="h-4 w-4" />
-          Send Money
-        </Button>
-      </div>
+      {/* Header Card */}
+      <Card className="bg-gradient-to-br from-primary to-primary-dark text-white border-0 shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold mb-2">Payments</h1>
+              <p className="text-primary-foreground/80 text-sm leading-relaxed">
+                Send money instantly, scan QR codes, and manage your payment history with ease
+              </p>
+            </div>
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+              <Wallet className="h-6 w-6 text-white" />
+            </div>
+          </div>
+          
+          <div className="flex gap-3 mt-6">
+            <Button 
+              onClick={() => setShowPaymentFlow(true)} 
+              className="flex-1 bg-white/20 hover:bg-white/30 border-white/30 text-white font-semibold backdrop-blur-sm transition-all duration-200 hover:scale-105"
+              size="default"
+            >
+              <Send className="h-4 w-4 mr-2" />
+              Send Money
+            </Button>
+            
+            <Button 
+              onClick={() => setShowPaymentFlow(true)} 
+              variant="outline"
+              className="bg-white/10 hover:bg-white/20 border-white/30 text-white font-semibold backdrop-blur-sm transition-all duration-200"
+              size="icon"
+            >
+              <QrCode className="h-4 w-4" />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Payment Stats */}
       <div className="grid grid-cols-2 gap-3"> {/* Changed from grid-cols-1 md:grid-cols-2 lg:grid-cols-4 to always 2 cols, reduced gap */}

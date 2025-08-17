@@ -8,6 +8,7 @@ import {
   GoalStatus,
   GoalTemplate
 } from '@/types';
+import { categorizationService } from './categorization';
 
 const merchantNames = {
   [ExpenseCategory.FOOD]: [
@@ -107,18 +108,26 @@ export function generateDemoTransactions(userId: string): Transaction[] {
       const isWeekend = new Date().getDay() === 0 || new Date().getDay() === 6;
       const adjustedAmount = isWeekend ? Math.floor(amount * 1.1) : amount;
       
+      // Generate categorization metadata
+      const categorization = categorizationService.categorize(description, merchant);
+      const isCorrectlyCategorzied = categorization.category === category;
+      
       const transaction: Transaction = {
         id: `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         userId,
         amount: adjustedAmount,
         description,
-        category,
+        category: isCorrectlyCategorzied ? category : categorization.category,
         date: getRandomDate(day),
         type: TransactionType.EXPENSE,
         paymentMethod: getRandomItem([PaymentMethod.UPI, PaymentMethod.CASH, PaymentMethod.CARD]),
         merchantName: merchant,
         upiTransactionId: Math.random() > 0.5 ? `UPI${Date.now()}${Math.random().toString(36).substr(2, 6)}` : undefined,
-        createdAt: getRandomDate(day)
+        createdAt: getRandomDate(day),
+        // Categorization metadata
+        categoryConfidence: categorization.confidence,
+        isManualCategory: Math.random() > 0.8, // 20% manual categorizations
+        categorizationReason: categorization.reason
       };
       
       transactions.push(transaction);

@@ -57,6 +57,10 @@ export interface Transaction {
   upiTransactionId?: string;
   userId: string;
   createdAt: string;
+  // Categorization metadata
+  categoryConfidence?: number;
+  isManualCategory?: boolean;
+  categorizationReason?: string;
 }
 
 export interface Budget {

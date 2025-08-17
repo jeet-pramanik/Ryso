@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Background & Foreground */
-    --background: 0 0% 100%;
-    --foreground: 212 84% 4.9%;
+    /* Background & Foreground - Lighter and easier on eyes */
+    --background: 0 0% 98%;
+    --foreground: 212 20% 18%;
 
-    /* Card Components */
+    /* Card Components - Pure white cards for clean look */
     --card: 0 0% 100%;
-    --card-foreground: 212 84% 4.9%;
+    --card-foreground: 212 20% 18%;
 
     /* Popover Components */
     --popover: 0 0% 100%;
@@ -26,13 +26,13 @@ All colors MUST be HSL.
     --primary-light: 205 100% 90%;   /* Light blue for backgrounds */
     --primary-dark: 205 100% 30%;    /* Dark blue for emphasis */
 
-    /* Secondary Colors */
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 212 47.4% 11.2%;
+    /* Secondary Colors - Softer grays */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 212 20% 18%;
 
-    /* Muted Colors */
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Colors - Gentler on eyes */
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 10% 55%;
 
     /* Accent Colors */
     --accent: 210 40% 96.1%;

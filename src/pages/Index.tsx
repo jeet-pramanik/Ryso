@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BottomNavigation from '@/components/layout/BottomNavigation';
 import Dashboard from '@/components/features/dashboard/Dashboard';
+import ExpensesPage from '@/components/features/expenses/ExpensesPage';
+import PaymentsPage from '@/components/features/payments/PaymentsPage';
+import GoalsPage from '@/components/features/goals/GoalsPage';
+import ProfilePage from '@/components/features/profile/ProfilePage';
 import AddExpenseModal from '@/components/modals/AddExpenseModal';
 
 const Index = () => {
@@ -26,79 +30,22 @@ const Index = () => {
           />
         );
       case 'expenses':
-        return (
-          <div className="min-h-screen bg-background pt-20 pb-24 px-4">
-            <div className="max-w-md mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-20"
-              >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">📊</span>
-                </div>
-                <h2 className="text-xl font-bold text-foreground mb-2">Expenses View</h2>
-                <p className="text-muted-foreground">Coming soon! Your expense categories and detailed analytics will appear here.</p>
-              </motion.div>
-            </div>
-          </div>
-        );
+        return <ExpensesPage />;
       case 'pay':
-        return (
-          <div className="min-h-screen bg-background pt-20 pb-24 px-4">
-            <div className="max-w-md mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-20"
-              >
-                <div className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💳</span>
-                </div>
-                <h2 className="text-xl font-bold text-foreground mb-2">UPI Payments</h2>
-                <p className="text-muted-foreground">Coming soon! Send money, pay bills, and manage your UPI transactions.</p>
-              </motion.div>
-            </div>
-          </div>
-        );
+        return <PaymentsPage />;
       case 'goals':
-        return (
-          <div className="min-h-screen bg-background pt-20 pb-24 px-4">
-            <div className="max-w-md mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-20"
-              >
-                <div className="w-16 h-16 rounded-full bg-warning/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🎯</span>
-                </div>
-                <h2 className="text-xl font-bold text-foreground mb-2">Savings Goals</h2>
-                <p className="text-muted-foreground">Coming soon! Set and track your savings goals with milestone rewards.</p>
-              </motion.div>
-            </div>
-          </div>
-        );
+        return <GoalsPage />;
       case 'profile':
-        return (
-          <div className="min-h-screen bg-background pt-20 pb-24 px-4">
-            <div className="max-w-md mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-20"
-              >
-                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">👤</span>
-                </div>
-                <h2 className="text-xl font-bold text-foreground mb-2">Profile & Settings</h2>
-                <p className="text-muted-foreground">Coming soon! Manage your profile, preferences, and app settings.</p>
-              </motion.div>
-            </div>
-          </div>
-        );
+        return <ProfilePage />;
       default:
-        return <Dashboard onNavigate={handleNavigate} onShowAddExpense={() => setShowAddExpense(true)} onShowSendMoney={() => setShowSendMoney(true)} onShowCreateGoal={() => setShowCreateGoal(true)} />;
+        return (
+          <Dashboard
+            onNavigate={handleNavigate}
+            onShowAddExpense={() => setShowAddExpense(true)}
+            onShowSendMoney={() => setShowSendMoney(true)}
+            onShowCreateGoal={() => setShowCreateGoal(true)}
+          />
+        );
     }
   };
 
@@ -123,45 +70,6 @@ const Index = () => {
         isOpen={showAddExpense} 
         onClose={() => setShowAddExpense(false)} 
       />
-
-      {/* Placeholder for other modals */}
-      {showSendMoney && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setShowSendMoney(false)}
-          />
-          <div className="relative bg-card rounded-2xl p-6 shadow-xl border border-border max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Send Money</h2>
-            <p className="text-muted-foreground mb-4">UPI payment functionality coming soon!</p>
-            <button 
-              onClick={() => setShowSendMoney(false)}
-              className="btn-primary w-full"
-            >
-              Got it
-            </button>
-          </div>
-        </div>
-      )}
-
-      {showCreateGoal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setShowCreateGoal(false)}
-          />
-          <div className="relative bg-card rounded-2xl p-6 shadow-xl border border-border max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Create Savings Goal</h2>
-            <p className="text-muted-foreground mb-4">Goal creation and tracking functionality coming soon!</p>
-            <button 
-              onClick={() => setShowCreateGoal(false)}
-              className="btn-primary w-full"
-            >
-              Got it
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { SavingsGoal, GoalStatus, GoalCategory } from '@/types';
 import { goalsRepository, CreateGoalData } from '@/services/repositories/GoalsRepository';
+import { achievementService } from '@/services/achievements';
 
 interface GoalsState {
   goals: SavingsGoal[];
@@ -55,6 +56,10 @@ export const useGoalsStore = create<GoalsState>()(
           set(state => ({
             goals: [...state.goals, newGoal]
           }));
+          
+          // Check for achievements
+          await achievementService.checkGoalCreated(data.userId, newGoal);
+          
           return newGoal;
         } catch (error) {
           console.error('Error creating goal:', error);
@@ -108,6 +113,10 @@ export const useGoalsStore = create<GoalsState>()(
               goal.id === goalId ? updatedGoal : goal
             )
           }));
+          
+          // Check for achievements
+          await achievementService.checkContribution(updatedGoal.userId, updatedGoal, amount);
+          
         } catch (error) {
           console.error('Error adding contribution:', error);
           set({ error: 'Failed to add contribution' });

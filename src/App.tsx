@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PaymentHistoryPage from "./pages/PaymentHistoryPage";
 import AddGoalPage from "./pages/AddGoalPage";
+import GoalDetailPage from "./pages/GoalDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/profile" element={<Index />} />
             <Route path="/payment-history" element={<PaymentHistoryPage />} />
             <Route path="/add-goal" element={<AddGoalPage />} />
+            <Route path="/goals/:goalId" element={<GoalDetailPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

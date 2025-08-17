@@ -8,13 +8,24 @@ import PaymentsPage from '@/components/features/payments/PaymentsPage';
 import GoalsDashboard from '@/components/features/goals/GoalsDashboard';
 import ProfilePage from '@/components/features/profile/ProfilePage';
 import AddExpenseModal from '@/components/modals/AddExpenseModal';
+import { useAchievementsStore } from '@/stores/achievementsStore';
+import { useUserStore } from '@/stores/userStore';
 
 const Index = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useUserStore();
+  const { isHydrated: achievementsHydrated, hydrate: hydrateAchievements } = useAchievementsStore();
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [showSendMoney, setShowSendMoney] = useState(false);
   const [showCreateGoal, setShowCreateGoal] = useState(false);
+
+  // Hydrate achievements when user is available
+  useEffect(() => {
+    if (user?.id && !achievementsHydrated) {
+      hydrateAchievements(user.id);
+    }
+  }, [user?.id, achievementsHydrated, hydrateAchievements]);
 
   // Map URL paths to tab names
   const getTabFromPath = (pathname: string) => {

@@ -25,7 +25,7 @@ interface BottomNavigationProps {
 
 export default function BottomNavigation({ activeTab, onTabChange }: BottomNavigationProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border/50 px-4 py-2 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-card/95 border-t border-border/50 px-4 py-2 z-[100] backdrop-blur-sm">
       <div className="max-w-md mx-auto">
         <nav className="flex items-center justify-around">
           {navItems.map((item) => {
@@ -37,7 +37,7 @@ export default function BottomNavigation({ activeTab, onTabChange }: BottomNavig
                 key={item.id}
                 onClick={() => onTabChange(item.id)}
                 className={cn(
-                  "flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 min-w-[60px]",
+                  "flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-200 min-w-[60px] relative",
                   isActive 
                     ? "text-primary" 
                     : "text-muted-foreground hover:text-foreground"
@@ -51,7 +51,7 @@ export default function BottomNavigation({ activeTab, onTabChange }: BottomNavig
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute -inset-2 rounded-lg bg-primary/10"
+                      className="absolute -inset-2 rounded-lg bg-primary/10 -z-10"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />

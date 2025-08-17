@@ -240,7 +240,7 @@ export default function BudgetSetup({
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100">
               <Button
                 variant="secondary"
                 onClick={() => setStep("welcome")}
@@ -355,7 +355,7 @@ export default function BudgetSetup({
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100">
               <Button
                 variant="secondary"
                 onClick={() => setStep("monthly")}
@@ -426,7 +426,7 @@ export default function BudgetSetup({
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100">
               <Button
                 variant="secondary"
                 onClick={() => setStep("categories")}
@@ -496,7 +496,7 @@ export default function BudgetSetup({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="relative w-full max-w-lg bg-white rounded-2xl p-6 shadow-xl border border-gray-100 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-lg bg-white rounded-2xl p-6 shadow-xl border border-gray-100 max-h-[calc(100vh-8rem)] overflow-y-auto pb-24"
           >
             {step !== "complete" && (
               <div className="flex items-center justify-between mb-6">

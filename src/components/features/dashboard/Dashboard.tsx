@@ -61,10 +61,22 @@ export default function Dashboard({
 
   // Re-hydrate budget when setup is closed to check for new budget
   useEffect(() => {
-    if (!showBudgetSetup && budgetHydrated && !currentBudget) {
-      hydrateBudget();
+    if (!showBudgetSetup && budgetHydrated) {
+      // Small delay to ensure budget creation is complete
+      const timer = setTimeout(() => {
+        hydrateBudget();
+      }, 500);
+      
+      return () => clearTimeout(timer);
     }
-  }, [showBudgetSetup, budgetHydrated, currentBudget, hydrateBudget]);
+  }, [showBudgetSetup, budgetHydrated, hydrateBudget]);
+
+  const handleBudgetSetupComplete = async () => {
+    // Force re-hydration of budget data
+    await hydrateBudget();
+    // Close the setup modal
+    setShowBudgetSetup(false);
+  };
 
   const handleQuickActions = {
     onAddExpense: onShowAddExpense,
@@ -163,7 +175,8 @@ export default function Dashboard({
         <AppHeader title="Budget Setup" />
         <BudgetSetup 
           isOpen={showBudgetSetup}
-          onClose={() => setShowBudgetSetup(false)} 
+          onClose={() => setShowBudgetSetup(false)}
+          onComplete={handleBudgetSetupComplete}
         />
       </div>
     );

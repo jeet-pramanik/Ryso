@@ -71,6 +71,7 @@ export interface Budget {
       spent: number;
     };
   };
+  isActive: boolean;
   createdAt: string;
   updatedAt: string;
 }

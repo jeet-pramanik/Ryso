@@ -1,40 +1,34 @@
 import { motion } from 'framer-motion';
-import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle } from 'lucide-react';
-import { useUserStore } from '@/stores/userStore';
-import { useTransactionStore } from '@/stores/transactionStore';
-import { BudgetAlert } from '@/types';
+import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Settings } from 'lucide-react';
+import { useBudgetStore } from '@/stores/budgetStore';
+import { Button } from '@/components/ui/button';
 
 export default function BudgetOverview() {
-  const { user } = useUserStore();
-  const { getTotalSpentThisMonth } = useTransactionStore();
+  const { currentBudget, getBudgetStats, getBudgetAlert } = useBudgetStore();
   
-  const monthlyBudget = user?.monthlyBudget || 8000;
-  const totalSpent = getTotalSpentThisMonth();
-  const remaining = monthlyBudget - totalSpent;
-  const percentage = (totalSpent / monthlyBudget) * 100;
-  
-  // Calculate days remaining in month
-  const now = new Date();
-  const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  const daysRemaining = Math.ceil((endOfMonth.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-  
-  // Determine budget status
-  const getBudgetAlert = (): BudgetAlert => {
-    if (percentage <= 60) {
-      return { type: 'healthy', message: 'You\'re on track!', percentage };
-    } else if (percentage <= 85) {
-      return { type: 'warning', message: 'Watch your spending', percentage };
-    } else {
-      return { type: 'critical', message: 'Budget exceeded!', percentage };
-    }
-  };
-  
+  if (!currentBudget) {
+    return (
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="card-gradient-primary relative overflow-hidden"
+      >
+        <div className="text-center py-8 text-white">
+          <div className="text-4xl mb-4">💰</div>
+          <h3 className="text-lg font-semibold mb-2">No Budget Set</h3>
+          <p className="text-white/80 text-sm">Set up your budget to start tracking</p>
+        </div>
+      </motion.div>
+    );
+  }
+
+  const stats = getBudgetStats();
   const alert = getBudgetAlert();
   
   const getStatusIcon = () => {
     switch (alert.type) {
       case 'healthy':
-        return <CheckCircle className="h-5 w-5 text-success" />;
+        return <CheckCircle className="h-5 w-5 text-white" />;
       case 'warning':
         return <AlertTriangle className="h-5 w-5 text-warning" />;
       case 'critical':
@@ -45,7 +39,7 @@ export default function BudgetOverview() {
   const getStatusColor = () => {
     switch (alert.type) {
       case 'healthy':
-        return 'text-success';
+        return 'text-white';
       case 'warning':
         return 'text-warning';
       case 'critical':
@@ -77,10 +71,10 @@ export default function BudgetOverview() {
           <div>
             <div className="flex justify-between items-baseline mb-2">
               <span className="text-2xl font-bold text-white">
-                ₹{totalSpent.toLocaleString()}
+                ₹{stats.totalSpent.toLocaleString()}
               </span>
               <span className="text-white/80">
-                of ₹{monthlyBudget.toLocaleString()}
+                of ₹{stats.totalAllocated.toLocaleString()}
               </span>
             </div>
             
@@ -95,7 +89,7 @@ export default function BudgetOverview() {
                     : 'bg-destructive'
                 }`}
                 initial={{ width: 0 }}
-                animate={{ width: `${Math.min(percentage, 100)}%` }}
+                animate={{ width: `${Math.min(alert.percentage, 100)}%` }}
                 transition={{ duration: 1, delay: 0.3 }}
               />
             </div>
@@ -108,16 +102,16 @@ export default function BudgetOverview() {
                 {alert.message}
               </p>
               <p className="text-white/80 text-sm">
-                {daysRemaining} days remaining
+                {stats.daysRemaining} days remaining
               </p>
             </div>
             
             <div className="text-right">
               <p className="text-xl font-bold text-white">
-                ₹{Math.abs(remaining).toLocaleString()}
+                ₹{Math.abs(stats.remaining).toLocaleString()}
               </p>
               <p className="text-white/80 text-sm">
-                {remaining >= 0 ? 'remaining' : 'over budget'}
+                {stats.remaining >= 0 ? 'remaining' : 'over budget'}
               </p>
             </div>
           </div>

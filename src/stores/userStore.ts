@@ -1,14 +1,18 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { User } from '@/types';
+import { userRepository } from '@/services/repositories/UserRepository';
+import { seedOrchestrator } from '@/data/seedOrchestrator';
+import { APP_CONFIG } from '@/constants/app';
 
 interface UserState {
   user: User | null;
   isInitialized: boolean;
+  isLoading: boolean;
   setUser: (user: User) => void;
-  updateUser: (userData: Partial<User>) => void;
+  updateUser: (userData: Partial<User>) => Promise<void>;
   clearUser: () => void;
-  initializeUser: () => void;
+  initializeUser: () => Promise<void>;
 }
 
 export const useUserStore = create<UserState>()(
@@ -16,21 +20,33 @@ export const useUserStore = create<UserState>()(
     (set, get) => ({
       user: null,
       isInitialized: false,
+      isLoading: false,
       
       setUser: (user: User) => {
         set({ user, isInitialized: true });
       },
       
-      updateUser: (userData: Partial<User>) => {
+      updateUser: async (userData: Partial<User>) => {
         const currentUser = get().user;
-        if (currentUser) {
+        if (!currentUser) return;
+        
+        try {
+          const updatedData = {
+            ...userData,
+            updatedAt: new Date().toISOString()
+          };
+          
+          await userRepository.update(currentUser.id, updatedData);
+          
           set({ 
             user: { 
               ...currentUser, 
-              ...userData, 
-              updatedAt: new Date().toISOString() 
+              ...updatedData
             } 
           });
+        } catch (error) {
+          console.error('Failed to update user:', error);
+          throw error;
         }
       },
       
@@ -38,22 +54,27 @@ export const useUserStore = create<UserState>()(
         set({ user: null, isInitialized: false });
       },
       
-      initializeUser: () => {
-        const currentUser = get().user;
-        if (!currentUser) {
-          // Create demo user
-          const demoUser: User = {
-            id: 'demo-user-1',
-            name: 'Arjun Sharma',
-            email: 'arjun.sharma@college.edu',
-            phone: '+91 98765 43210',
-            monthlyBudget: 8000,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-          };
-          set({ user: demoUser, isInitialized: true });
-        } else {
-          set({ isInitialized: true });
+      initializeUser: async () => {
+        try {
+          set({ isLoading: true });
+          
+          // Ensure database is seeded
+          await seedOrchestrator.checkAndSeed();
+          
+          // Try to load user from database
+          const user = await userRepository.getById(APP_CONFIG.DEMO_USER_ID);
+          
+          if (user) {
+            set({ user, isInitialized: true, isLoading: false });
+          } else {
+            // Fallback - should not happen after seeding
+            console.warn('User not found after seeding');
+            set({ isInitialized: true, isLoading: false });
+          }
+        } catch (error) {
+          console.error('Failed to initialize user:', error);
+          set({ isLoading: false });
+          throw error;
         }
       }
     }),

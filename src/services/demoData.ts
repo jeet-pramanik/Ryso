@@ -65,12 +65,12 @@ const descriptions = {
 };
 
 const amountRanges = {
-  [ExpenseCategory.FOOD]: { min: 50, max: 500 },
-  [ExpenseCategory.TRANSPORT]: { min: 20, max: 300 },
-  [ExpenseCategory.HOSTEL]: { min: 100, max: 2000 },
-  [ExpenseCategory.BOOKS]: { min: 100, max: 1500 },
-  [ExpenseCategory.ENTERTAINMENT]: { min: 100, max: 800 },
-  [ExpenseCategory.EMERGENCY]: { min: 200, max: 2000 }
+  [ExpenseCategory.FOOD]: { min: 30, max: 150 },
+  [ExpenseCategory.TRANSPORT]: { min: 15, max: 80 },
+  [ExpenseCategory.HOSTEL]: { min: 50, max: 200 },
+  [ExpenseCategory.BOOKS]: { min: 50, max: 300 },
+  [ExpenseCategory.ENTERTAINMENT]: { min: 50, max: 200 },
+  [ExpenseCategory.EMERGENCY]: { min: 100, max: 500 }
 };
 
 function getRandomItem<T>(array: T[]): T {
@@ -94,8 +94,8 @@ export function generateDemoTransactions(userId: string): Transaction[] {
   
   // Generate transactions for the last 30 days
   for (let day = 0; day < 30; day++) {
-    // Generate 1-4 transactions per day
-    const transactionsPerDay = Math.floor(Math.random() * 4) + 1;
+    // Generate 0-2 transactions per day (reduced frequency)
+    const transactionsPerDay = Math.floor(Math.random() * 3);
     
     for (let i = 0; i < transactionsPerDay; i++) {
       const category = getRandomItem(categories);
@@ -103,9 +103,9 @@ export function generateDemoTransactions(userId: string): Transaction[] {
       const description = getRandomItem(descriptions[category]);
       const amount = getRandomAmount(category);
       
-      // Weekend spending is typically higher
+      // Weekend spending is typically higher but keep it reasonable
       const isWeekend = new Date().getDay() === 0 || new Date().getDay() === 6;
-      const adjustedAmount = isWeekend ? Math.floor(amount * 1.3) : amount;
+      const adjustedAmount = isWeekend ? Math.floor(amount * 1.1) : amount;
       
       const transaction: Transaction = {
         id: `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,

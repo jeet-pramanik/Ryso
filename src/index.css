@@ -144,6 +144,21 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-display;
     font-family: 'Inter', sans-serif;
+    /* Prevent horizontal scrolling on mobile */
+    overflow-x: hidden;
+  }
+  
+  /* Mobile-first responsive utilities */
+  .mobile-container {
+    @apply max-w-md mx-auto min-h-screen;
+  }
+  
+  .mobile-safe-area {
+    @apply px-4 sm:px-6;
+  }
+  
+  .mobile-touch-target {
+    @apply min-h-[44px] min-w-[44px];
   }
 }
 

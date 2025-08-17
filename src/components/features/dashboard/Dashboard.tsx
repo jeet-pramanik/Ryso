@@ -17,16 +17,16 @@ import { Card, CardContent } from '@/components/ui/card';
 
 interface DashboardProps {
   onNavigate: (tab: string) => void;
+  onExternalNavigate?: (path: string) => void;
   onShowAddExpense: () => void;
   onShowSendMoney: () => void;
-  onShowCreateGoal: () => void;
 }
 
 export default function Dashboard({ 
   onNavigate, 
+  onExternalNavigate,
   onShowAddExpense, 
-  onShowSendMoney, 
-  onShowCreateGoal 
+  onShowSendMoney
 }: DashboardProps) {
   const { user, isInitialized, isLoading: userLoading, initializeUser } = useUserStore();
   const { transactions, isHydrated, isLoading: transactionLoading, hydrate } = useTransactionStore();
@@ -81,7 +81,7 @@ export default function Dashboard({
   const handleQuickActions = {
     onAddExpense: onShowAddExpense,
     onSendMoney: onShowSendMoney,
-    onCreateGoal: onShowCreateGoal,
+    onCreateGoal: onExternalNavigate ? () => onExternalNavigate('/add-goal') : () => {},
     onViewExpenses: () => onNavigate('expenses')
   };
 
@@ -251,7 +251,7 @@ export default function Dashboard({
               
               <div className="text-center py-4">
                 <button 
-                  onClick={onShowCreateGoal}
+                  onClick={() => onExternalNavigate ? onExternalNavigate('/add-goal') : onNavigate('goals')}
                   className="text-primary text-sm font-medium hover:underline"
                 >
                   + Create your first savings goal

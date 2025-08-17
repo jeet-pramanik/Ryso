@@ -8,6 +8,7 @@ import PaymentsPage from '@/components/features/payments/PaymentsPage';
 import GoalsDashboard from '@/components/features/goals/GoalsDashboard';
 import ProfilePage from '@/components/features/profile/ProfilePage';
 import AddExpenseModal from '@/components/modals/AddExpenseModal';
+import SendMoneyModal from '@/components/features/payments/SendMoneyModal';
 import { useAchievementsStore } from '@/stores/achievementsStore';
 import { useUserStore } from '@/stores/userStore';
 
@@ -18,7 +19,6 @@ const Index = () => {
   const { isHydrated: achievementsHydrated, hydrate: hydrateAchievements } = useAchievementsStore();
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [showSendMoney, setShowSendMoney] = useState(false);
-  const [showCreateGoal, setShowCreateGoal] = useState(false);
 
   // Hydrate achievements when user is available
   useEffect(() => {
@@ -76,15 +76,19 @@ const Index = () => {
     setActiveTab(tab);
   };
 
+  const handleExternalNavigate = (path: string) => {
+    navigate(path);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
         return (
           <Dashboard
             onNavigate={handleNavigate}
+            onExternalNavigate={handleExternalNavigate}
             onShowAddExpense={() => setShowAddExpense(true)}
             onShowSendMoney={() => setShowSendMoney(true)}
-            onShowCreateGoal={() => setShowCreateGoal(true)}
           />
         );
       case 'expenses':
@@ -99,9 +103,9 @@ const Index = () => {
         return (
           <Dashboard
             onNavigate={handleNavigate}
+            onExternalNavigate={handleExternalNavigate}
             onShowAddExpense={() => setShowAddExpense(true)}
             onShowSendMoney={() => setShowSendMoney(true)}
-            onShowCreateGoal={() => setShowCreateGoal(true)}
           />
         );
     }
@@ -133,6 +137,11 @@ const Index = () => {
         <AddExpenseModal 
           isOpen={showAddExpense} 
           onClose={() => setShowAddExpense(false)} 
+        />
+        
+        <SendMoneyModal 
+          isOpen={showSendMoney} 
+          onClose={() => setShowSendMoney(false)} 
         />
       </div>
     </div>

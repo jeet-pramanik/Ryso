@@ -148,7 +148,7 @@ export default function Dashboard({
           >
             <Card>
               <CardContent className="p-8">
-                <div className="text-6xl mb-6">🧠�</div>
+                <div className="text-6xl mb-6">🧠</div>
                 <h2 className="text-2xl font-bold mb-4">Welcome to Ryso!</h2>
                 <p className="text-muted-foreground mb-8">
                   Your smart money companion is here! Let's set up your budget so I can help make every rupee count toward your goals.

@@ -56,7 +56,7 @@ This project is built with modern web technologies:
 
 ```bash
 # Clone the repository
-git clone https://github.com/jeet-pramanik/pay-path-goal.git
+git clone https://github.com/jeet-pramanik/Ryso.git
 
 # Navigate to project directory  
 cd pay-path-goal
@@ -106,7 +106,7 @@ src/
 <table border="0">
 <tr>
 <td align="center">
-<img src="https://github.com/jeet-pramanik/pay-path-goal/blob/main/assets/iit-guwahati-logo.png?raw=true" alt="IIT Guwahati" width="100" height="100">
+<img src="https://github.com/jeet-pramanik/Ryso/blob/main/assets/iit-guwahati-logo.png?raw=true" alt="IIT Guwahati" width="100" height="100">
 </td>
 <td align="center">
 <h3>Indian Institute of Technology Guwahati</h3>
